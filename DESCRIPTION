@@ -1,0 +1,14 @@
+Package: dotifyr
+Title: Interact with Spotify
+Version: 0.1
+Authors@R: 
+    person(given = "Ben",
+           family = "Aldous",
+           role = c("aut", "cre"),
+           email = "benaldous@yahoo.com")
+Description: Provides functions to get data from and manage playlists in Spotify.
+License: file LICENSE
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.1
+Imports: dplyr, httr, jsonlite, lubridate, purrr, rlang, stringr
