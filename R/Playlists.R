@@ -1,10 +1,10 @@
 #' Manage Playlists
-#' 
+#'
 #' @param user Username of owner
 #' @param private Include private playlists?
-#' 
+#'
 #' @import httr stringr dplyr purrr
-#' 
+#'
 #' @export
 
 get_playlists = function(user,private = F) {
@@ -46,9 +46,9 @@ get_playlists = function(user,private = F) {
 }
 
 #' @describeIn get_playlists
-#' 
+#'
 #' @param playlist ID of playlist
-#' 
+#'
 #' @export
 
 get_playlist_tracks = function(playlist) {
@@ -85,11 +85,11 @@ get_playlist_tracks = function(playlist) {
 }
 
 #' @describeIn get_playlists
-#' 
+#'
 #' @param name Name of playlist
-#' 
+#'
 #' @importFrom jsonlite toJSON
-#' 
+#'
 #' @export
 
 add_playlist = function(name) {
@@ -98,7 +98,7 @@ add_playlist = function(name) {
   body_args = toJSON(list(name = name,public = F),auto_unbox = T)
   response = RETRY("POST",
                    endpoint,
-                   config(token = user_token),
+                   config(token = pkg.env[["user_token"]]),
                    body = body_args)
   stop_for_status(response)
   content = content(response)
@@ -107,9 +107,9 @@ add_playlist = function(name) {
 }
 
 #' @describeIn get_playlists
-#' 
+#'
 #' @param ids Vector of track IDs
-#' 
+#'
 #' @export
 
 add_tracks = function(ids,playlist) {
@@ -119,7 +119,7 @@ add_tracks = function(ids,playlist) {
   body_args = toJSON(list(uris = ids))
   response = RETRY("POST",
                    endpoint,
-                   config(token = user_token),
+                   config(token = pkg.env[["user_token"]]),
                    content_type_json(),
                    body = body_args)
   stop_for_status(response)
